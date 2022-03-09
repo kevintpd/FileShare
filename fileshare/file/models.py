@@ -12,4 +12,5 @@ class file(models.Model):
     #文件类型
     filetype = models.CharField('文件类型',max_length=10, default='')
     #文件下载次数
-    downloadtimes = models.IntegerField('文件下载次数',default='')
+    downloadtimes = models.IntegerField('文件下载次数',default=0)
+
