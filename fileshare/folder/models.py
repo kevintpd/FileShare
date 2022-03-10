@@ -1,4 +1,5 @@
 from django.db import models
+# from user.models import User
 
 # Create your models here.
 class Folder(models.Model):
@@ -10,7 +11,7 @@ class Folder(models.Model):
     #文件夹存在时长
     exist_time = models.IntegerField(verbose_name="存在时间")
     #文件夹所属人，文件夹的外键
-    # belongtouser = models.ForeignKey()
+    # folder_belong_to_user = models.ForeignKey('User',on_delete=models.CASCADE)
     #文件夹创建者
     folder_creater = models.CharField(verbose_name="文件夹创建者",max_length=20)
     #文件夹分享码,有分享码则为 共享文件夹 分享码为空就是普通文件夹
