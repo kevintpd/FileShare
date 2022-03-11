@@ -23,30 +23,31 @@ from django.contrib.auth import authenticate
 
 
 class CustomBackend(ModelBackend):
-    #方法重写
+    # 方法重写
     def authenticate(self, request, username=None, password=None, **kwargs):
         try:
-            user = User.objects.get(username = username)
+            user = User.objects.get(username=username)
             if user.check_password(password):
                 return user
         except Exception as e:
             return None
 
+
 def login_view(request):
     if request.method == 'POST':
         user_name = request.POST['username']
         pass_word = request.POST['password']
-        #用authenticate来验证用户账号密码是否正确
-        user = authenticate(request = request, username=user_name, password=pass_word)
+        # 用authenticate来验证用户账号密码是否正确
+        user = authenticate(request=request, username=user_name, password=pass_word)
         if user is not None:
-            #保持登录状态
+            # 保持登录状态
             login(request, user)
             return HttpResponseRedirect('/index')
         else:
-            return render(request,'login.html',{'msg':'账号或者密码错误！'})
+            return render(request, 'login.html', {'msg': '账号或者密码错误！'})
     elif request.method == 'GET':
         return render(request, 'login.html')
 
-def register_view(request):
 
+def register_view(request):
     return render(request, 'register.html')
