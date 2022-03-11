@@ -40,6 +40,9 @@
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="438a2d92-dd2f-44b9-8006-9d9688ac483c" dataset="main.folder_folder" active-filter-id="" />
     <filter-actions connection-id="438a2d92-dd2f-44b9-8006-9d9688ac483c" dataset="main.auth_user" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="438a2d92-dd2f-44b9-8006-9d9688ac483c" dataset="main.auth_user_groups" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="438a2d92-dd2f-44b9-8006-9d9688ac483c" dataset="main.auth_group" active-filter-id="" />
+    <filter-actions connection-id="438a2d92-dd2f-44b9-8006-9d9688ac483c" dataset="main.user_user" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
