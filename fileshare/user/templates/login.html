@@ -21,7 +21,11 @@
     </p>
 </form>
 
-
+{% if info %}
+    <script>
+        window.alert('{{ info }}');
+    </script>
+{% endif %}
 
 
 

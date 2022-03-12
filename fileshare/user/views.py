@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import User
 from django.contrib.auth.backends import ModelBackend
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth import authenticate
 
 # Create your views here.
@@ -44,10 +44,33 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect('/index')
         else:
-            return render(request, 'login.html', {'msg': '账号或者密码错误！'})
+            info = '账号或者密码错误！'
+            return render(request, 'login.html', {'info': info})
     elif request.method == 'GET':
         return render(request, 'login.html')
 
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/index')
 
 def register_view(request):
+    if request.method == 'POST':
+        user_name = request.POST['username']
+        pass_word_1 = request.POST['password_1']
+        pass_word_2 = request.POST['password_2']
+        user_email = request.POST.get('useremail')
+        print(user_email)
+        if user_name == '':
+            info = '用户名为空！'
+            return render(request, 'register.html', {'info': info})
+        if pass_word_1 != pass_word_2:
+            info = '两次密码不一样'
+            return render(request, 'register.html', {'info': info})
+        user = User.objects.filter(username=user_name)
+        if user:
+            info = '该用户已存在'
+            return render(request, 'register.html', {'info': info})
+        else:
+            User.objects.create_user(username=user_name, password=pass_word_1, email=user_email)
+            return HttpResponseRedirect('/user/login')
     return render(request, 'register.html')
