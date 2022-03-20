@@ -1,10 +1,13 @@
 from rest_framework import serializers
 from django.apps import apps
 import os
+# from ..user.models import Token
+
 
 Folder = apps.get_model('folder', 'Folder')
 File = apps.get_model('file', 'File')
 User = apps.get_model('user', 'User')
+
 
 
 class FolderSerializer(serializers.ModelSerializer):
@@ -41,3 +44,8 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+
+# class TokenSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Token
+#         fields = '__all__'
