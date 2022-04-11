@@ -1,12 +1,13 @@
 from rest_framework import generics
 from django.apps import apps
 from .serializers import FolderSerializer, FileSerializer, UserSerializer
+from . import permissions
+
 # from ..user.models import Token
 
 Folder = apps.get_model('folder', 'Folder')
 File = apps.get_model('file', 'File')
 User = apps.get_model('user', 'User')
-
 
 
 class FolderList(generics.ListCreateAPIView):
@@ -27,6 +28,7 @@ class FileList(generics.ListCreateAPIView):
 class FileDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = File.objects.all()
     serializer_class = FileSerializer
+    permission_classes = [permissions.IsInPublicFolder]
 
 
 class UserList(generics.ListCreateAPIView):
@@ -37,7 +39,6 @@ class UserList(generics.ListCreateAPIView):
 class UserDetail(generics.RetrieveUpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
 
 # class TokenList(generics.ListCreateAPIView):
 #     queryset = Token.object.all()
